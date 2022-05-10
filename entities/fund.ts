@@ -27,10 +27,10 @@ export class Fund {
    * @returns Number
    */
   fundOverlap(fund: Fund) {
-    if (this.stocks.length === 0 && fund.stocks.length == 0) return 0.0;
+    if (this.stocks.length === 0 || fund.stocks.length == 0) return 0.0;
 
     let intersectionCount = intersection(this.stocks, fund.stocks).length;
-    
+
     return (
       ((intersectionCount * 2) / (this.stocks.length + fund.stocks.length)) *
       100

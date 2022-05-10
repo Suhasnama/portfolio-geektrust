@@ -29,7 +29,7 @@ var Fund = /** @class */ (function () {
      * @returns Number
      */
     Fund.prototype.fundOverlap = function (fund) {
-        if (this.stocks.length === 0 && fund.stocks.length == 0)
+        if (this.stocks.length === 0 || fund.stocks.length == 0)
             return 0.0;
         var intersectionCount = helper_1.intersection(this.stocks, fund.stocks).length;
         return (((intersectionCount * 2) / (this.stocks.length + fund.stocks.length)) *
