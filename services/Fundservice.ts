@@ -12,7 +12,7 @@ export class FundService {
     try {
       fund = this.fundRepo.getFundByName(words[1]);
     } catch (e) {
-      console.log(` overlap ${e.message} ${words[1]}`);
+      console.log(`${e.message}`);
     }
 
     fund?.addStock(
@@ -20,7 +20,7 @@ export class FundService {
         .filter((_, index) => {
           return index > 1;
         })
-        .join()
+        .join(" ")
     );
   }
 
@@ -34,11 +34,10 @@ export class FundService {
 
     if (fund)
       for (let index = 0; index < portfolio.funds.length; index++) {
-        console.log(
-          `${fund.title} ${portfolio.funds[index].title} ${portfolio.funds[
-            index
-          ].fundOverlap(fund)}%`
-        );
+        const fOp = portfolio.funds[index].fundOverlap(fund);
+        if (fOp != 0.0) {
+          console.log(`${fund.title} ${portfolio.funds[index].title} ${fOp}%`);
+        }
       }
   }
 }
